@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Liste des Comptes</title>
+</head>
+<body>
+	<div th:replace="fragments/navbar :: navbar"></div>
+	<div class="col-md-6 col-md-offset-3 spacer40">
+		<div class="panel panel-primary" th:if="${comptes}">
+			<div class="panel-heading">Liste des Comptes</div>
+			<div class="panel-body">
+				<a href="/comptes/addCompte">Ajouter un nouveau compte</a>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>TYPE CPTE</th>
+							<th>DATE CREATION</th>
+							<th>SOLDE</th>
+							<th>DECOUVERT</th>
+							<th>TAUX</th>
+							<th>CODE CLI</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="compte : ${comptes}">
+							<td th:text="${compte.class.simpleName}">TYPE CPTE</td>
+							<td th:text="${compte.dateCreation}">DATE CREATION</td>
+							<td th:text="${compte.solde}">SOLDE</td>
+							<!-- 							<td th:text="${compte.decouvert}">DECOUVERT</td>
+							<td th:text="${compte.taux}">TAUX</td> -->
+							<td
+								th:text="${compte instanceof T(com.sid.entities.CompteCourant) ? compte.decouvert : ''}">DECOUVERT</td>
+							<td
+								th:text="${compte instanceof T(com.sid.entities.CompteEpargne) ? compte.taux : ''}">TAUX</td>
+							<td th:text="${compte.client.code}">CODE CLI</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<ul class="nav nav-pills">
+						<li th:each="p, status : ${pages}"
+							th:class="${status.index == currentPage} ? 'active' : ''"><a
+							th:href="@{/comptes(page=${status.index})}"
+							th:text="${status.index + 1}">1</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Formulaire Compte</title>
+</head>
+<body>
+
+	<div th:replace="fragments/navbar :: navbar"></div>
+	<div class="col-md-6 col-md-offset-3 spacer40"
+		sec:authorize="hasRole('ROLE_ADMIN')">
+		<img style="WIDTH: 100%; HEIGHT: 255px; margin-bottom: 25px;"
+			th:src="@{/img/visuelparticuliers.png}" alt="BANKTRI_Particuliers">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Formulaire Compte Courant</div>
+			<div class="panel-body">
+				<h1>Add New Compte</h1>
+				<form th:action="@{/addCompte}" th:object="${compteDTO}"
+					method="post">
+					<label for="codeCompte">Code Compte:</label> <input type="text"
+						id="codeCompte" th:field="*{codeCompte}" required /><br /> <label
+						for="dateCreation">Date Creation:</label> <input type="date"
+						id="dateCreation" th:field="*{dateCreation}" required /><br /> <label
+						for="solde">Solde:</label> <input type="number" step="0.01"
+						id="solde" th:field="*{solde}" required /><br /> <label
+						for="clientId">Client:</label> <select id="clientId"
+						th:field="*{clientId}" required>
+						<option th:each="client : ${clients}" th:value="${client.code}"
+							th:text="${client.nom}">Client Name</option>
+					</select><br /> <label for="typeCompte">Type Compte:</label> <select
+						id="typeCompte" th:field="*{typeCompte}" required>
+						<option value="CE">Compte Epargne</option>
+						<option value="CC">Compte Courant</option>
+					</select><br />
+
+					<div id="epargneFields">
+						<label for="taux">Taux:</label> <input type="number" step="0.01"
+							id="taux" th:field="*{taux}" /><br />
+					</div>
+
+					<div id="courantFields">
+						<label for="decouvert">Decouvert:</label> <input type="number"
+							step="0.01" id="decouvert" th:field="*{decouvert}" /><br />
+					</div>
+
+					<button type="submit">Submit</button>
+				</form>
+
+				<script>
+        document.getElementById('typeCompte').addEventListener('change', function () {
+            var type = this.value;
+            document.getElementById('epargneFields').style.display = type === 'CE' ? 'block' : 'none';
+            document.getElementById('courantFields').style.display = type === 'CC' ? 'block' : 'none';
+        });
+        document.getElementById('typeCompte').dispatchEvent(new Event('change'));
+    </script>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

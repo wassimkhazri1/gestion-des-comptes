@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Spring Security Example</title>
+<meta charset="utf-8" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../css/myStyle.css"
+	th:href="@{../css/myStyle.css}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- 	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<style>
+form i {
+	margin-left: -30px;
+	margin-top: 9px;
+	cursor: pointer;
+}
+
+.btn-label {
+	PADDING-RIGHT: 12px;
+	DISPLAY: inline-block;
+	PADDING-LEFT: 12px;
+	LEFT: -12px;
+	PADDING-BOTTOM: 6px;
+	PADDING-TOP: 6px;
+	POSITION: relative;
+	border-radius: 3px 0 0 3px
+}
+
+.btn-labeled {
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+
+.input-group {
+	MARGIN-BOTTOM: 10px
+}
+
+.separator {
+	BORDER-RIGHT: #dfdfe0 1px solid
+}
+
+.facebook {
+	min-width: 170px
+}
+
+.twitter {
+	min-width: 170px
+}
+
+.facebook {
+	COLOR: #fff;
+	BACKGROUND-COLOR: #354e84
+}
+
+.twitter {
+	COLOR: #fff;
+	BACKGROUND-COLOR: #00a5e3
+}
+
+.facebook:hover {
+	COLOR: #fff
+}
+
+.twitter:hover {
+	COLOR: #fff
+}
+</style>
+<style>
+.block {
+	display: block;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	background-color: #354E84;
+	padding: 6px 0px;
+	font-size: 14px;
+	text-align: center;
+	color: white;
+	text-decoration-line: none;
+}
+
+#block1 {
+	background-color: #00A5E3;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+}
+
+.input-group-addon {
+	/* 	padding: 0.5em; */
+	background-color: #e9ecef;
+	border: 1px solid #ced4da;
+	border-right: none;
+	/* 	padding:6px 12px; */
+}
+
+.form-control {
+	padding: 0.5em;
+	border: 1px solid #ced4da;
+	border-left: none;
+	flex: 1;
+}
+
+.fa-eye {
+	padding: 0.5em;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 10px;
+	padding-right: 40px; /* Espace pour l'icône */
+}
+</style>
+<style>
+.input-container {
+	position: relative;
+	width: 100%;
+}
+
+.input-container input {
+	width: 100%;
+	padding: 10px;
+	padding-right: 40px; /* Espace pour l'icône */
+}
+
+.input-container .fa-eye {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<div class="container container-fluid">
+		<div class="container-fluid">
+			<div id="Content" class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+				<div class="zone zone-content">
+					<article class="page content-item">
+
+						<br> <br>
+						<header>
+							<!--div class="page-header">   <h1>Connexion</h1>-->
+							<!-- Content END -->
+
+							<div id="first" style="display: block;">
+								<div class="col-md-12">
+									<div class="col-md-6" id="first1">
+										<div class="col-md-12 padding-0">
+											<a href="#"><img
+												style="width: 100%; height: 255px; margin-bottom: 25px;"
+												th:src="@{/img/visuelparticuliers.png}"
+												alt="BTNET_ParticuliersWassim"></a>
+										</div>
+									</div>
+
+									<div class="col-md-6" id="second1" style="display: none">
+										<div class="col-md-12 padding-0">
+											<a href="#"><img style="WIDTH: 60%; HEIGHT: 50%"
+												src="/BTNETPAR/Login/img_securite.png"></a>
+										</div>
+									</div>
+									<div class="col-md-6" id="third1" style="display: none">
+										<div class="col-md-12 padding-0">
+											<a href="#"><img style="WIDTH: 60%; HEIGHT: 50%"
+												src="/BTNETPAR/Login/img_otp.png"></a>
+										</div>
+									</div>
+									<div class="col-md-6" id="forth1" style="display: none">
+										<div class="col-md-12 padding-0">
+											<a href="#"><img style="WIDTH: 60%; HEIGHT: 50%"
+												src="/BTNETPAR/Login/img_seproteger.png"></a>
+										</div>
+									</div>
+
+									<div class="col-md-6" id="fifth1" style="display: none">
+										<div class="col-md-12 padding-0">
+											<a href="#"><img style="WIDTH: 60%; HEIGHT: 50%"
+												src="/BTNETPAR/Login/img_acheter.png"></a>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="col-md-12 col-xs-12 col-sm-12">
+											<form th:action="@{/login}" class="form-horizontal"
+												id="idForm" method="post" role="form">
+												<input name="__RequestVerificationToken" type="hidden"
+													value="AUW22gY-WHkunk855q9ngGpPFvH1_12cm0rj0YSMiwh6lt2QJ4QChERe76bMV83WJnT_uF806Z5qJ0p4D7fnsGh2TviTdpRIVGd07K8I1Ww1">
+												<div class="panel panel-primary">
+													<div class="panel-body">
+
+														<div class="">
+
+
+
+															<div class="col-md-12" style="margin-top: 5%;">
+																<div class="col-md-6" style="margin-bottom: 11px;">
+																	<a class="block"
+																		href="/BTNETPAR/Accueil/Renitialiser_password">Mot
+																		de passe oublié ?</a> <br> <a
+																		href="/BTNETPAR/Accueil/ConfigurerOTP" id="A2"
+																		class="block" onclick="clicked_button()" role="button">Configuration
+																		2FA</a> <br> <a class="block" id="block1"
+																		href="/BTNETPAR/Accueil/Acces_bloque">Accès Bloqué</a>
+
+
+
+																</div>
+																<div class="col-md-6 login-box">
+
+																	<div class="input-group">
+																		<span class="input-group-addon"><span
+																			class="glyphicon glyphicon-user"></span></span> <input
+																			class="form-control" data-val="true"
+																			data-val-required="Le champ Identifiant est requis."
+																			id="Identifiant" name="username"
+																			placeholder="Identifiant" type="text" value="">
+																	</div>
+																	<div class="input-group">
+																		<span class="input-group-addon"> <span
+																			class="fa fa-lock"></span></span> <input type="password"
+																			name="password" class="form-control"
+																			id="InputPassword" placeholder="Code confidentiel">
+
+																		<span class="fa fa-eye" onclick="myFunction()"
+																			id="showp"></span>
+																	</div>
+																	<script>
+																		function myFunction() {
+																			var passwordInput = document
+																					.getElementById("InputPassword");
+																			var showpIcon = document
+																					.getElementById("showp");
+
+																			if (passwordInput.type === "password") {
+																				passwordInput.type = "text";
+																				showpIcon.classList
+																						.remove("fa-eye");
+																				showpIcon.classList
+																						.add("fa-eye-slash");
+																			} else {
+																				passwordInput.type = "password";
+																				showpIcon.classList
+																						.remove("fa-eye-slash");
+																				showpIcon.classList
+																						.add("fa-eye");
+																			}
+																		}
+																	</script>
+
+
+
+
+																	<div class="form-group">
+																		<div class="col-md-3"></div>
+																		<div class="col-md-9"></div>
+																		<script type="text/javascript">
+																			var RecaptchaOptions = {
+																				"theme" : "red",
+																				"lang" : "en",
+																				"tabindex" : 0
+																			};
+																		</script>
+																		<script
+																			src="http://www.google.com/recaptcha/api/challenge?k=6LcpXe8UAAAAAG2JXL3OG5uSFI_q53kn9yprmyhe"
+																			type="text/javascript"></script>
+																		<noscript>
+																			<iframe frameborder="0" height="300px"
+																				src="http://www.google.com/recaptcha/api/noscript?k=6LcpXe8UAAAAAG2JXL3OG5uSFI_q53kn9yprmyhe"
+																				width="500px"></iframe>
+																			<br /> <br />
+																			<textarea cols="40" name="recaptcha_challenge_field"
+																				rows="3"></textarea>
+																			<input name="recaptcha_response_field" type="hidden"
+																				value="manual_challenge" />
+																		</noscript>
+																		<br>
+																	</div>
+																	<div id="myModalBloq" class="modal">
+																		<div class="modal-dialog modal-confirm">
+																			<div class="modal-content">
+																				<div class="modal-header">
+
+																					<h2 class="modal-title" style="color: red;">
+																						<i class="fa fa-times-circle-o"></i> Erreur
+																					</h2>
+																				</div>
+																				<div class="modal-body">
+																					<p></p>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" id="btnYes"
+																						class="btn btn-danger" data-dismiss="modal">OK</button>
+
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+
+																	<script>
+																		$(
+																				'#btnYes')
+																				.click(
+																						function() {
+																							location.href = 'Activation';
+
+																							$(
+																									"#myModalBloq")
+																									.modal(
+																											"hide");
+
+																						})
+																	</script>
+																	<center>
+																		<div id="divProcessing" style="display: none;">
+																			<p>
+																				<img src="/BTNETPAR/Content/loader.gif">
+																			</p>
+
+																		</div>
+																	</center>
+																</div>
+
+
+															</div>
+															<div class="row">
+																<div class="col-md-12"></div>
+															</div>
+
+
+														</div>
+
+													</div>
+													<div class="panel-footer" style="height: 55px;">
+
+														<div class="col-md-8"></div>
+														<div class="col-md-4">
+															<button type="submit" class="btn btn-default"
+																style="float: right;">
+																<span class="glyphicon glyphicon-log-in"
+																	aria-hidden="true"></span> Connexion
+															</button>
+														</div>
+
+
+
+
+
+													</div>
+												</div>
+												<input type="hidden" name="__ncforminfo"
+													value="FaihnuGBvJTwACUJyLSgFTt65MG2gIxgjWjItTFwsRoy7b_cENtDbKwVQmzeUty7a-k7w0LR4skFntiC8QE2Cowql-hpY0yQ2OXBFAVDn5M=">
+											</form>
+
+
+										</div>
+
+
+									</div>
+								</div>
+								<div class="container" id="second2" style="display: none">
+									<div class="panel-group" id="accordion1">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle" href="#accordion1_1"
+														data-toggle="collapse" data-parent="#accordion1">Des
+														systèmes sécurisés</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse in" id="accordion1_1">
+												<div class="panel-body">
+													<div align="justified">
+														<p>
+															La Banque de Tunisie utilise le protocole de
+															communication SSL 2048 bits (Secure Socket Layer) pour
+															chiffrer l'ensemble des données échangées. <br>Le
+															SSL 2048 a le niveau de chiffrement le plus élevé
+															disponible sur les navigateurs Internet grand public et
+															permet d'assurer la confidentialité et l'intégrité des
+															données échangées sur Internet. <br>Le site et votre
+															poste de travail établissent une connexion cryptée à
+															travers laquelle vous pouvez transmettre votre code
+															client et votre mot de passe sans risquer qu'ils soient
+															interceptés par un tiers. <br>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion1_2"
+														data-toggle="collapse" data-parent="#accordion1">BTNET
+														: nos engagement pour votre sécurité</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion1_2">
+												<div class="panel-body">
+													<p>
+														Vos transactions en ligne sont sécurisées par la banque:
+														Votre connexion est sécurisée par la technique SSL (Secure
+														Socket Layer). <br>· En tant qu'utilisateur unique,
+														vous disposez d'un login et d'un code confidentiel
+														personnel et d'un code d'activation transmit par SMS. <br>·
+														Si vous introduisez 3 fois vos identifiants d'accès d'une
+														manière incorrecte, l'accès à BTNET sera bloqué. <br>·
+														Si vous utilisez l'authentification supplémentaire via
+														OTP, l'introduction de 3 OTP erronés provoque
+														automatiquement le blocage de votre accès à BTNET lorsque
+														vous êtes en mode hors ligne. <br>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion1_3"
+														data-toggle="collapse" data-parent="#accordion1">Que
+														puis-je faire pour ma sécurité ?</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion1_3">
+												<div class="panel-body">
+													<p>1. Dans la barre d'adresse se trouve la mention
+														https:// au lieu de http://, le s signifie Secure.</p>
+													<p>2. Choisissez le bouton Certificats pour plus
+														d'informations sur le certificat attribué à la Banque De
+														Tunisie ou cliquez sur le cadenas.</p>
+													<br>
+													<p style="COLOR: darkblue">
+														<b> · Ne pas divulguer votre code secret ou code PIN à
+															un tiers </b>
+													</p>
+													<p>1. Le code secret et le code PIN sont strictement
+														personnels.</p>
+													<p style="COLOR: darkblue">
+														<b> · Se déconnecter d'Internet Banking après
+															utilisation. </b>
+													</p>
+													<br>Veillez à vous déconnecter via la touche Se
+													déconnecter lorsque vous avez terminé ou lorsque vous
+													quittez (momentanément) votre place. <br>
+													<p style="COLOR: darkblue">
+														<b> · Se déconnecter toujours correctement de votre
+															session BTNET et fermer votre navigateur Internet, que ce
+															soit chez vous, au bureau ou dans une zone d'accès public
+															à internet. </b>
+													</p>
+													<br>Ne naviguez pas sur d'autres sites lorsque vous
+													êtes au milieu d'une session BTNET. <br>
+													<p style="COLOR: darkblue">
+														<b> · Utiliser une version récente de votre navigateur
+															internet. </b>
+													</p>
+													<p></p>
+													<p>
+														Vérifiez régulièrement que vous utilisez la version la
+														plus récente de votre navigateur. <br>Les navigateurs
+														sont souvent adaptés à des techniques de sécurité de plus
+														en plus performantes. <br>
+													</p>
+													<p style="COLOR: darkblue">
+														<b> · Installer des programmes de protection tels
+															qu'un antivirus et/ou un firewall (un pare-feu) </b>
+													</p>
+													<p></p>
+													<p>1. Utilisez un antivirus et/ou un pare feu récent.
+														Veillez à installer régulièrement les mises-à-jour.</p>
+													<p>2. Vérifiez que votre antivirus reste actif, même si
+														vous n'êtes plus connecté sur internet.</p>
+													<br>
+													<p>3. Exécutez régulièrement un scan antivirus.</p>
+													<br>Si un antivirus ou un firewall actif vous causent
+													des problèmes à l'utilisation de BTNET, consultez les
+													paramètres de configuration de l'antivirus ou du firewall.
+													<br>
+													<p style="COLOR: darkblue">
+														<b> · Ne pas ouvrir les pièces jointes à des e-mails
+															qui, à première vue, viennent d'une source fiable, mais
+															qui ont une apparence inhabituelle (par exemple, un
+															e-mail de votre banque demandant la communication de
+															données confidentielles). </b>
+													</p>
+													<br>
+													<p style="COLOR: darkblue">
+														<b> · Installer immédiatement les mises à jour de
+															votre système d'exploitation, ainsi que de vos programmes
+															et plug-ins. </b>
+													</p>
+													<br>Vous éviterez ainsi d'être exposé aux
+													vulnérabilités qui peuvent être exploitées comme des
+													failles de sécurité. <br>Les versions les plus
+													récentes sont en effet capables de résister aux nouveaux
+													virus sur Internet. <br>
+													<p style="COLOR: darkblue">
+														<b> · La Banque De Tunisie et les autres entreprises
+															fiables ne vous enverront jamais d'e-mail vous demandant
+															de transmettre des données confidentielles (codes secrets
+															ou mots de passe, codes PIN, soldes des comptes,... ). </b>
+													</p>
+													<br>Méfiez-vous de tout e-mail qui vous demande ce
+													genre d'informations !
+													<p></p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion1_4"
+														data-toggle="collapse" data-parent="#accordion1">
+														Comment utiliser l'OTP pour se connecter aux service BTNET
+													</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion1_4">
+												<div class="panel-body">
+													<p>
+														- Se connecter au moins une fois avec votre Smartphone
+														(identification de l'appareil avec notre système)<br>-
+														Cliquer sur configurer votre OTP <br>- Entrer votre
+														login et mot de passe<br>- Retourner sur votre
+														smartphone <br>- Cliquer sur la notification BTNET
+														Mobile <br>- Scanner le QRCode.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container" id="third2" style="display: none">
+									<div class="panel-group" id="accordion12">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle" href="#accordion12_12"
+														data-toggle="collapse" data-parent="#accordion12">C'est
+														quoi l'authentification à deux facteurs</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse in" id="accordion12_12">
+												<div class="panel-body">
+													<p>L'authentification à deux facteurs offre une
+														protection supplémentaire pour votre identifiant BTNET.
+														Elle permet ainsi de garantir que vous êtes la seule
+														personne pouvant accéder à votre compte, même si quelqu'un
+														d'autre connaît votre mot de passe.</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle" href="#accordion12_1"
+														data-toggle="collapse" data-parent="#accordion12">Comment
+														fonctionne l'authentification à deux facteurs</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion12_1">
+												<div class="panel-body">
+													<p>
+														Face à la recrudescence des vols de mots de passe, les
+														internautes n'hésitent plus à utiliser la validation en
+														deux étapes pour sécuriser l'accès à leurs réseaux sociaux
+														ou à leurs services web. <br>Encore peu connu du
+														grand public, ce système permet de protéger ses données
+														des pirates informatiques même si ces derniers détiennent
+														votre login et votre mot de passe. <br>Une fois
+														activé, on vous demandera de vous connecter à l'un de vos
+														comptes en plus de votre login et de votre mot de passe et
+														de rentrer un code à usage unique. <br>Ce code à
+														usage unique vous sera généré chaque 30 secondes via BTNET
+														mobile.
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion12_5"
+														data-toggle="collapse" data-parent="#accordion12">
+														Compléter la configuration de BTNET MOBILE sur votre
+														Smartphone </a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion12_5">
+												<div class="panel-body">
+													<p>- Appuyer sur la notification.</p>
+													<p>- Placer l'objectif de l'appareil photo devant
+														l'écran de votre ordinateur afin de scanner le code QR</p>
+													<p>- Une fois l'opération terminée, l'application va
+														générer un code à 6 chiffres (Si vous êtes hors ligne)
+														sinon confirmer la connexion via mobile.</p>
+													<p>- Retourner sur votre ordinateur et reporter ce
+														numéro dans la zone code</p>
+													<p>- Appuyer sur le bouton Valider.</p>
+													<p>
+														L'application BTNET MOBILE est désormais synchronisée avec
+														votre compte BTNET.<br>La prochaine fois que vous
+														tenterez de vous connecter à votre compte BTNET, il vous
+														suffira de lancer BTNET MOBILE puis de saisir le code de
+														validation généré par l'application mobile.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container" id="forth2" style="display: none">
+									<div class="panel-group" id="accordion22">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle" href="#accordion22_1"
+														data-toggle="collapse" data-parent="#accordion22">Identifiants
+														et mots de passe</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse in" id="accordion22_1">
+												<div class="panel-body">
+													<p>
+														Ne communiquer jamais à quiconque vos mots de passe, clés
+														personnelles ou codes PIN.<br>Ne saisisser jamais vos
+														identifiants et vos mots de passe après avoir cliqué sur
+														un lien dans un e-mail douteux. <br>Ce type de
+														sollicitation est fréquemment utilisé par les pirates pour
+														tenter de dérober vos informations personnelles. <br>Changer
+														régulièrement de mot de passe et créez un mot de passe
+														sécurisé : éviter les noms ou chiffres évidents. <br>Essayer
+														autant que possible d'utiliser des mots de passe non
+														identiques sur les différents comptes que vous possédez
+														sur internet.
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion22_2"
+														data-toggle="collapse" data-parent="#accordion22">
+														Méfiez-vous des e-mails non sollicités </a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion22_2">
+												<div class="panel-body">
+													<p>
+														Diffuser votre adresse e-mail à bon escient. <br>De
+														préférence, ne pas la communiquer qu'à des personnes ou
+														organismes de confiance vous offrant un service utile. <br>Ne
+														pas ouvrir les e-mails d'origine inconnue ni les pièces
+														jointes associées. Ils peuvent contenir des virus, vers ou
+														chevaux de Troie qui vont s'installer sur votre ordinateur
+														à votre insu. <br>Ils peuvent également contenir des
+														liens vers des sites frauduleux qui tenteront d'obtenir
+														vos coordonnées personnelles. <br>Scanner les e-mails
+														avec votre logiciel antivirus. <br> <br>Détruire
+														les e-mails douteux sans les lire.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container" id="fifth2" style="display: none">
+									<div class="panel-group" id="accordion33">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle" href="#accordion33_1"
+														data-toggle="collapse" data-parent="#accordion33">Identifier
+														les sites de confiance</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse in" id="accordion33_1">
+												<div class="panel-body">
+													<p>
+														Dans la mesure du possible, privilégiez les sites
+														reconnus. <br>Vérifiez systématiquement l'adresse du
+														site sur lequel vous vous trouvez, particulièrement si
+														vous avez cliqué sur un lien pour y accéder. <br>Si
+														vous ne connaissez pas le site sur lequel vous vous
+														trouvez, soyez attentifs aux avis des internautes qui ont
+														déjà passé commande sur ce site. <br>Soyez
+														particulièrement vigilants sur les sites qui proposent la
+														vente. <br>Dans la mesure du possible consultez les
+														évaluations du profil avec qui vous traitez et vérifiez
+														dans les règlements du site les conditions de
+														remboursement si un litige devait intervenir.
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion33_2"
+														data-toggle="collapse" data-parent="#accordion33">Payer
+														de manière sécurisée </a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion33_2">
+												<div class="panel-body">
+													<p>
+														Au moment de rentrer les coordonnées de votre carte
+														bancaire, vérifiez que l'adresse de la page débute par
+														https:// et que votre navigateur internet affiche un
+														cadenas près de la barre d'adresse. <br>La présence
+														de ces deux éléments indique que vos informations seront
+														cryptées pour plus de sécurité et ne pourront être
+														interceptées par un tiers malveillant. <br>Pour un
+														paiement par carte bancaire, un site de vente en ligne
+														vous demandera les 16 chiffres de votre carte, sa date
+														d'expiration et les 3 chiffres du cryptogramme inscrit au
+														dos de votre carte. <br>A aucun moment un site ne
+														doit vous demander le code de votre carte bancaire !
+														Certains commerçants peuvent utiliser le service 3D
+														Secure. <br>Ce service utilise les programmes
+														Mastercard SecureCode et Verified by Visa. <br>Ce
+														dispositif a pour but de lutter contre la fraude. <br>Avec
+														ce système vous êtes redirigé vers une page sécurisée de
+														votre banque où vous devez vous authentifier afin de
+														valider la transaction. <br>Une fois la transaction
+														effectuée, fermez la session et conservez le récapitulatif
+														de commande qui vous est généralement envoyé par e-mail.
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h5 class="panel-title" style="COLOR: darkblue">
+													<a class="accordion-toggle collapsed" href="#accordion33_3"
+														data-toggle="collapse" data-parent="#accordion33">Attention
+														aux fraudes aux chèques de banque</a>
+												</h5>
+											</div>
+											<div class="panel-collapse collapse" id="accordion33_3">
+												<div class="panel-body">
+													<p>
+														Une fraude aux faux chèques de banque sévit sur internet
+														et concerne les internautes ayant mis en vente des biens
+														sur des sites de ventes en ligne. <br>Le temps que la
+														banque du vendeur identifie la fraude, la victime aura
+														soit perdu l'objet en vente, soit effectué un virement sur
+														le compte de l'escroc suite à un montant indiqué sur le
+														faux chèque de banque supérieur au prix initial
+														fixé.Prudence donc, et privilégiez le virement pour le
+														règlement de ces transactions.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="second" style="display: none">
+								<div class="col-md-12"></div>
+
+							</div>
+
+							<div id="third" style="display: none">
+								<div class="col-md-12"></div>
+
+							</div>
+
+							<div id="forth" style="display: none;">
+								<div class="col-md-12"></div>
+
+							</div>
+
+							<div id="fifth" style="display: none;">
+								<div class="col-md-12"></div>
+
+							</div>
+							<!-- Footer -->
+						</header>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

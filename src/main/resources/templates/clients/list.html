@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Liste des Clients</title>
+</head>
+<body>
+	<div th:fragment="navbar">
+		<div class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/operation}">Operations</a></li>
+					<li><a th:href="@{/comptes}">Comptes</a></li>
+					<li><a th:href="@{/clients}">Clients</a></li>
+					<li><a th:href="@{/clients/new}">Ajouter Client</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/login?logout}">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 col-md-offset-3 spacer40">
+		<div class="panel panel-primary" th:if="${clients}">
+			<div class="panel-heading">Liste des Clients</div>
+			<div class="panel-body">
+				<a href="/clients/new">Ajouter un nouveau client</a>
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Photo</th>
+						<th>Actions</th>
+					</tr>
+					<tr th:each="client : ${clients}">
+						<td th:text="${client.code}">ID</td>
+						<td th:text="${client.nom}">Nom</td>
+						<td th:text="${client.email}">Email</td>
+						<td><img th:src="'data:image/jpeg;base64,' + ${client.photo}"
+							class="img-circle" alt="User Profile Photo" width="50"
+							height="50" /></td>
+						<td><a th:href="@{/clients/edit/{id}(id=${client.code})}">Modifier</a>
+							<a th:href="@{/clients/delete/{id}(id=${client.code})}">Supprimer</a>
+						</td>
+					</tr>
+				</table>
+				<!-- Pagination -->
+				<div>
+					<ul class="nav nav-pills">
+						<li th:each="p,status:${pages}"><a
+							th:href="@{/clients(page=${status.index})}"
+							th:text="${status.index}"></a></li>
+					</ul>
+				</div>
+				<!--                     <div>
+                        <ul class="pagination">
+                            <li th:each="p, status : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == p} ? 'active'">
+                                <a th:href="@{/clients(page=${p})}" th:text="${p + 1}"></a>
+                            </li>
+                        </ul>
+                    </div> -->
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

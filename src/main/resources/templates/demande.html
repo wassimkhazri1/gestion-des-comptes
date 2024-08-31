@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Spring Security Example</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../css/myStyle.css"
+	th:href="@{../css/myStyle.css}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	th:href="@{https://pro.fontawesome.com/releases/v5.10.0/css/all.css}"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous">
+<!-- 	    <style>
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-addon {
+            padding: 0.5em;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+        }
+
+        .form-control {
+            padding: 0.5em;
+            border: 1px solid #ced4da;
+            border-left: none;
+            flex: 1;
+        }
+
+        .fa-eye {
+            cursor: pointer;
+            padding: 0.5em;
+        }
+    </style> -->
+</head>
+<body>
+<div id="first">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" style="    background-color: #004d93;">
+                                            <center> Demande d'un nouveau mot de passe</center>
+                                        </div>
+                                        <div class="panel-body">
+                                            <section id="loginForm">
+<form action="/BTNETPAR/Accueil/Renitialiser_password" class="form-horizontal" id="idForm" method="post" role="form"><input name="__RequestVerificationToken" type="hidden" value="2iB285i41ojPny8FwUhu_t4gPSDWgU4R5QqaWDXaE-q0HorF_E1ZUb9IPn7Vr1UZSQ6o90vK1RWYFcg9opjujsa80Qg1gSNlvFFT6jA7wHY1">                                                <div class="col-md-12">
+
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                                        <input class="form-control" data-val="true" data-val-number="Le champ Identifiant doit être un nombre." data-val-required="Le champ Identifiant est requis." id="Identifiant" name="Identifiant" placeholder="Identifiant" type="text" value="">
+
+
+                                                    </div>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Identifiant" data-valmsg-replace="true"></span>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
+                                                        <input class="form-control" data-val="true" data-val-number="Le champ CIN doit être un nombre." data-val-required="Le champ CIN est requis." id="CIN" name="CIN" placeholder="Numéro CIN" type="text" value="">
+
+
+
+                                                    </div>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="CIN" data-valmsg-replace="true"></span>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                                                        <input class="form-control" data-val="true" data-val-required="Le champ GSM est requis." id="GSM" name="GSM" placeholder="216 + Numéro GSM" type="text" value="">
+
+
+
+                                                    </div>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="GSM" data-valmsg-replace="true"></span>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                                        <input class="form-control" data-val="true" data-val-email="Le champ EMAIL n'est pas une adresse électronique valide." data-val-required="Le champ EMAIL est requis." id="EMAIL" name="EMAIL" placeholder="Email" type="text" value="">
+
+
+
+                                                    </div>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="EMAIL" data-valmsg-replace="true"></span>
+
+
+                                                    <div class="input-group">
+
+
+                                                        <input type="hidden" name="NewPassword" value="Bt123456">
+                                                        <input type="hidden" name="ConfirmPassword" value="Bt123456">
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-3">
+
+                                                        </div>
+                                                        <div class="g-recaptcha col-md-7">
+<script type="text/javascript">
+$(function () {$('#5f1dc5b7be1b4ccab63e5fa0831a085f').show();});
+function ______ab9c626729104e678ecdaa08fb8a84c8________() { $('#5f1dc5b7be1b4ccab63e5fa0831a085f').hide(); $.post("/BTNETPAR/DefaultCaptcha/Refresh", { t: $('#CaptchaDeText').val() }, function(){$('#5f1dc5b7be1b4ccab63e5fa0831a085f').show();}); return false; }</script> 
+<br>
+<img id="CaptchaImage" src="/BTNETPAR/DefaultCaptcha/Generate?t=2c7f9f8d1afa4432a90fea1f321164d2"><input id="CaptchaDeText" name="CaptchaDeText" type="hidden" value="2c7f9f8d1afa4432a90fea1f321164d2"> <br><a href="#CaptchaImage" id="5f1dc5b7be1b4ccab63e5fa0831a085f" onclick="______ab9c626729104e678ecdaa08fb8a84c8________()" style="">Refresh</a><br>Input symbols<br><input autocomplete="off" autocorrect="off" id="CaptchaInputText" name="CaptchaInputText" type="text" value=""><br></div>
+
+                                                        <br>
+
+                                                    </div>
+                                                  <hr>
+                                                    <div class="panel">
+                                                       
+                                                   
+                                                            <div class="panel-body">
+                                                                <div align="justified">
+                                                                    <p>
+                                                                        <i class="glyphicon glyphicon-info-sign"></i> Vous recevrez votre nouveau mot de passe par e-mail et le code d'activation par SMS sur votre gsm.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                      
+                                                    </div>
+                                                
+                                                 
+                                                    <div class="form-group pull-right">
+
+                                                        <input name="process" id="process" type="submit" value="Valider" class="btn btn-default">
+
+                                                    </div>
+                                                    <div class="form-group">
+
+
+                                                        <center>
+                                                            <div id="divProcessing" style="display: none;">
+                                                                <p><img src="/BTNETPAR/Content/loader.gif"></p>
+
+                                                            </div>
+                                                        </center>
+
+                                                    </div>
+
+
+                                                </div>
+                                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                                        <div class="modal-dialog modal-confirm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <i class="glyphicon glyphicon-exclamation-sign" style="font-size: 52px;color: #cb2803;"></i>
+
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h2> </h2>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Modal -->
+                                                    <div id="myModalConfirm" class="modal">
+                                                        <div class="modal-dialog modal-confirmGreen">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <div class="icon-box">
+                                                                        <i class="material-icons"></i>
+                                                                    </div>
+                                                                    <h4 class="modal-title"></h4>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <p class="text-center"></p>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" id="btnYes" class="btn btn-success" data-dismiss="modal">OK</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+<input type="hidden" name="__ncforminfo" value="Ny9Z7S2ROxq9mHA9JAyYP3mONEcZPk19caff6y3lZwXIzBpcNpDNdEPovy5RsjJvNAjseJNGD-Y01JpozFj-DLmvMHTd7WHYdypJXvA_oIhmtzSmYDN-mWfduNjk9N0Y"></form>                                                
+
+                                                <script>
+                                                    $('#btnYes').click(function () {
+                                                        location.href = 'Login';
+
+                                                        $("#myModalConfirm").hide();
+
+
+                                                    })
+                                                </script>
+                                            </section>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            </body>
+                            </html>
