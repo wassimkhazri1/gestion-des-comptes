@@ -210,6 +210,11 @@ const AddClient = () => {
                 error={!!touched.naissanceDate && !!errors.naissanceDate}
                 helperText={touched.naissanceDate && errors.naissanceDate}
                 sx={{ gridColumn: "span 2" }}
+                InputLabelProps={{
+                  sx: {
+                    transform: 'translateX(10px)' // Décale le label de 10px vers la droite
+                  }
+                }}
               />
                 <TextField
                 fullWidth
