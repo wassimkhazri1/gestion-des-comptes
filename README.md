@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# ⚛️ BankBank — Frontend React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Interface utilisateur React de l'application bancaire **BankBank**, connectée à l'API REST Spring Boot.
 
-## Available Scripts
+> 🔧 Le backend Spring Boot est disponible sur la branche [`spring`](../spring).
+> 📄 La documentation complète est sur la branche [`main`](../main).
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Fonctionnalités
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🔐 Authentification JWT (login + gestion du token)
+- 👤 Interface de gestion des utilisateurs
+- 💰 Gestion des comptes bancaires (liste, création, édition, suppression)
+- 💸 Opérations bancaires (virements, dépôts, retraits)
+- 📄 Téléchargement des relevés PDF
+- 📈 Export Excel depuis l'interface
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Stack technique
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Élément | Techno |
+|---|---|
+| Framework | React |
+| Bootstrap | Create React App |
+| Langage | JavaScript (ES6+) |
+| Appels API | Fetch / Axios vers backend Spring Boot |
+| Package manager | npm |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Lancement
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prérequis
+- Node.js 18+
+- npm
+- Le **backend Spring Boot** doit tourner sur `http://localhost:8080`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Étapes
 
-### `npm run eject`
+```bash
+# 1. Se placer sur la branche master
+git clone https://github.com/wassimkhazri1/gestion-des-comptes
+cd gestion-des-comptes
+git checkout master
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 2. Installer les dépendances
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 3. Lancer en mode développement
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Frontend accessible sur `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Build production
 
-## Learn More
+```bash
+npm run build
+```
+Le build optimisé sera dans le dossier `build/`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📁 Structure
 
-### Code Splitting
+```
+src/
+├── components/     # Composants réutilisables
+├── pages/          # Pages de l'application
+├── services/       # Appels API (fetch/axios)
+└── ...
+public/
+package.json
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🔗 Backend associé
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Le backend Spring Boot est disponible sur la branche `spring` :
+👉 [github.com/wassimkhazri1/gestion-des-comptes/tree/spring](https://github.com/wassimkhazri1/gestion-des-comptes/tree/spring)
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 👤 Auteur
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Wassim Khazri**
+- 📧 wassim_khazri@hotmail.fr
+- 💼 [LinkedIn](https://www.linkedin.com/in/wassim-khazri-ab923a14b/)
+- 🐙 [GitHub](https://github.com/wassimkhazri1)
